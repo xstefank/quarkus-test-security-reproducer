@@ -15,20 +15,19 @@ public class PingResourceTest {
     @TestSecurity(user = "test", roles = "test")
     public void loggedUserWorking() {
         given()
-          .when().get("/ping")
-          .then()
-             .statusCode(200)
-             .body(is("Hello RESTEasy"));
+            .when().get("/ping")
+            .then()
+            .statusCode(200)
+            .body(is("Hello from RESTEasy Reactive test"));
     }
 
-    // doesn't work, tries to authenticate with keycloak
     @Test
     @TestSecurity
-    public void anonymousNotWorking() {
+    public void seemsToWorkNow() {
         given()
             .when().get("/ping")
             .then()
-            .statusCode(403);
+            .statusCode(401);
     }
 
 }
